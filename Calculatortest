@@ -1,0 +1,59 @@
+package com.example.Demojunit;
+
+import org.junit.jupiter.api.Test;
+
+import static org.springframework.test.util.AssertionErrors.assertEquals;
+
+public class CalculatorTests {
+
+    Calculator calculator = new Calculator();
+
+    @Test
+    public void caltest(){
+    assertEquals("Error in add()", 4, calculator.add (2, 2));
+    assertEquals("Error in add()", 5, calculator.add (3, 2));
+    assertEquals("Error in add()", 8, calculator.add (5, 3));
+
+    }
+    //subtraction addition failure
+    public void ShouldFailAddTwoNumbers(){
+        assertEquals("Error in add()", 0, calculator.add (1, 2));
+    }
+    //subtraction addition success
+    public void ShouldAddTwoNumbers() {
+        assertEquals("Error in add()", 4, calculator.add (2, 2));
+        assertEquals("Error in add()", 4, calculator.add (2, 2));
+        assertEquals("Error in add()", 8, calculator.add (5, 3));
+    }
+    //subtraction success
+    public void calctestsubpass(){
+    assertEquals("Error in sub()", 4, calculator.subtract (8, 4));
+    assertEquals("Error in sub()", -4, calculator.subtract (2, 6));
+    assertEquals("Error in sub()", 8, calculator.subtract (10, 2));
+    }
+    //subtraction failure
+    public void ShouldSubtractTwoNumbers(){
+        assertEquals("Error in sub()", 0, calculator.subtract(2,1));
+
+    }
+
+    public void ShouldMultiplyTwoNumbers(){
+        assertEquals("Error in multiply()", 4, calculator.multiply (2, 2));
+        assertEquals("Error in multiply()", -4, calculator.multiply (-2, 2));
+        assertEquals("Error in multiply()", 8, calculator.multiply (4, 2));
+    }
+
+    public void ShouldFailMultiplyTwoNumbers(){
+
+        assertEquals("Error in multiply()", -4, calculator.multiply (1, 2));
+    }
+
+    public void ShouldDivideTwoNumbers(){
+    assertEquals("Error in division()", 4, calculator.divide (8, 2));
+    assertEquals("Error in division()", 6, calculator.divide (12, 2));
+    assertEquals("Error in division()", 8, calculator.divide (16, 2));
+    }
+    public void ShouldFailDivideTwoNumbers(){
+        assertEquals("Error in division()", 8, calculator.divide (20, 1));
+    }
+}
