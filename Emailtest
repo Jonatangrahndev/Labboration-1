@@ -1,0 +1,34 @@
+package com.example.Demojunit;
+import com.example.demo.Validator;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+
+public class Emailtest {
+
+Validator validator = new Validator();
+    @Test
+    public void TestValidEmail() {
+        String validEmail = "john.doe@example.com";
+        assertTrue(validator.isEmailValid(validEmail));
+    }
+
+    @Test
+    public void TestInvalidEmailWithoutAtSign() {
+        String invalidEmail = "johndoe.example.com";
+        assertFalse(validator.isEmailValid(invalidEmail));
+    }
+
+    @Test
+    public void TestInvalidEmailWithoutTopLevelDomain() {
+        String invalidEmail = "johndoe@example";
+        assertFalse(validator.isEmailValid(invalidEmail));
+    }
+
+    @Test
+    public void TestInvalidEmailWithEmptyString() {
+        String invalidEmail = "johndoe@.com";
+        assertFalse(validator.isEmailValid(invalidEmail));
+    }
+
+}
