@@ -1,34 +1,69 @@
+import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+public class ValidatorTest {
 package com.example.Demojunit;
 import com.example.demo.Validator;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class ValidatorTest {
+    public class ValidatorTest {
 
-   Validator validator = new Validator();
-    @Test
-    public void testValidPhoneNumber() {
-        assertTrue(validator.isPhoneNumberValid("0123456789"));
+        Validator validator = new Validator();
+        @Test
+        public void testValidPhoneNumber() {
+            assertTrue(validator.isPhoneNumberValid("0123456789"));
+        }
+
+        @Test
+        public void testPhoneNumberWithoutstartZero() {
+            assertFalse(Validator.isPhoneNumberValid("1954575550"));
+        }
+
+        @Test
+        public void testPhoneNumberTooShort() {
+            assertFalse(Validator.isPhoneNumberValid("12345"));
+        }
+
+        @Test
+        public void testPhoneNumberTooLong() {
+            assertFalse(Validator.isPhoneNumberValid("01234567890"));
+        }
+
+        @Test
+        public void testPhoneNumberWithcharset() {
+            assertFalse(Validator.isPhoneNumberValid("0123-456-789"));
+        }
+        @Test
+        @DisplayName("validating phone number with spaces")
+        public void validatePhoneNumberWithSpaces() {
+          Assertions.assertTrue(PhoneNumberValidation.isValid("202 555 0133"));
     }
+        @Test
+        @DisplayName("Validating phone number with multiple spaces")
+        public void validatePhoneNumberWithMultipleSpaces() {
+            Assertions.assertTrue(PhoneNumberValidation.isValid("1   800   555 1212"));
+        }
+        @Test
+        @DisplayName("Validating phone number with no spaces")
+        public void validatePhoneNumberWithNoSpaces() {
+            Assertions.assertTrue(PhoneNumberValidation.isValid("18005551212"));
+}
+        @Test
+        public void testPhoneNumberVerification() {
+            String phoneNumber = "18005551212";
+            assertTrue(phoneNumber.matches("^1?[. -]?\\(?\\d{3}\\)?[. -]?\\d{3}[. -]?\\d{4}$"));
+        }
 
-    @Test
-    public void testPhoneNumberWithoutstartZero() {
-        assertFalse(Validator.isPhoneNumberValid("1954575550"));
-    }
+        @Test
+        void testPhoneNumberVerificationNegative() {
+            String phoneNumber = "1234567890";
+            assertFalse(phoneNumber.matches("^1?[. -]?\\(?\\d{3}\\)?[. -]?\\d{3}[. -]?\\d{4}$"));
 
-    @Test
-    public void testPhoneNumberTooShort() {
-        assertFalse(Validator.isPhoneNumberValid("12345"));
-    }
-
-    @Test
-    public void testPhoneNumberTooLong() {
-        assertFalse(Validator.isPhoneNumberValid("01234567890"));
-    }
-
-    @Test
-    public void testPhoneNumberWithcharset() {
-        assertFalse(Validator.isPhoneNumberValid("0123-456-789"));
+        //simpel true or false mot nummer
     }
 }
+}
+
